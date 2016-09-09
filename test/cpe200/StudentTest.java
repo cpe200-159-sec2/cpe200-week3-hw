@@ -13,7 +13,7 @@ public class StudentTest {
     @Test
     public void defaultConstructor() throws Exception {
         s = new Student();
-        assertEquals("John Doe", s.getStudentName());
+        assertEquals("John Doe", s.getName());
         assertEquals("560610000", s.getStudent_id());
         assertEquals(1990, s.getYearOfBirth());
         assertEquals(false, s.isActive());
@@ -23,14 +23,14 @@ public class StudentTest {
     public void parameterizedConstructor() throws Exception {
         // valid data
         s = new Student("Saman Boonme", "590613001", 1998, true);
-        assertEquals("Saman Boonme", s.getStudentName());
+        assertEquals("Saman Boonme", s.getName());
         assertEquals("560610000", s.getStudent_id());
         assertEquals(1998, s.getYearOfBirth());
         assertEquals(true, s.isActive());
 
         // invalid data
         s = new Student("Somchai Maakmee", "500611701", 1980, false);
-        assertEquals("Somchai Maakmee", s.getStudentName());
+        assertEquals("Somchai Maakmee", s.getName());
         assertEquals("560610000", s.getStudent_id());
         assertEquals(1990, s.getYearOfBirth());
         assertEquals(false, s.isActive());
@@ -45,7 +45,7 @@ public class StudentTest {
     public void invalidName() throws Exception {
         // continue from setUp()
         s.setName("");
-        assertEquals("Sanguan Sornjai", s.getStudentName());
+        assertEquals("Sanguan Sornjai", s.getName());
     }
 
     @Test
