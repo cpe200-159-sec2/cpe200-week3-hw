@@ -7,31 +7,27 @@ public class Course {
 
     // CONSTRUCTORS
     public Course() {
-        this(DEFAULT_COURSE_NAME, DEFAULT_COURSE_ID, DEFAULT_LECTURER_NAME, DEFAULT_MAX_STUDENTS);
+        setCourseName(DEFAULT_COURSE_NAME);
+        setCourseId(DEFAULT_COURSE_ID);
+        setLecturerName(DEFAULT_LECTURER_NAME);
+        setMaxStudents(DEFAULT_MAX_STUDENTS);
+        setCurrentStudents(DEFAULT_CURRENT_STUDENTS);
     }
 
     public Course(String courseName, String courseId) {
-        this(courseName, courseId, DEFAULT_LECTURER_NAME, DEFAULT_MAX_STUDENTS);
+        this();
+        setCourseName(courseName);
+        setCourseId(courseId);
     }
 
     public Course(String courseName, String courseId, String lecturerName) {
-        this(courseName, courseId, lecturerName, DEFAULT_MAX_STUDENTS);
+        this(courseName, courseId);
+        setLecturerName(lecturerName);
     }
 
     public Course(String courseName, String courseId, String lecturerName, int maxStudents) {
-        if (!setCourseName(courseName)) {
-            setCourseName(DEFAULT_COURSE_NAME);
-        }
-        if (!setCourseId(courseId)) {
-            setCourseId(DEFAULT_COURSE_ID);
-        }
-        if (!setLecturerName(lecturerName)) {
-            setLecturerName(DEFAULT_LECTURER_NAME);
-        }
-        if (!setMaxStudents(maxStudents)) {
-            setMaxStudents(DEFAULT_MAX_STUDENTS);
-        }
-        setCurrentStudents(DEFAULT_CURRENT_STUDENTS);
+        this(courseName, courseId, lecturerName);
+        setMaxStudents(maxStudents);
     }
 
     // SETTERS

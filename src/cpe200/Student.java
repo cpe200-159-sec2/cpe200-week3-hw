@@ -4,30 +4,26 @@ public class Student {
 
     // CONSTRUCTORS
     public Student() {
-        this(DEFAULT_STUDENT_NAME, DEFAULT_STUDENT_ID, DEFAULT_YEAR_OF_BIRTH, DEFAULT_STATUS);
+        setName(DEFAULT_STUDENT_NAME);
+        setStudentId(DEFAULT_STUDENT_ID);
+        setYearOfBirth(DEFAULT_YEAR_OF_BIRTH);
+        setStatus(DEFAULT_STATUS);
     }
 
     public Student(String studentName, String studentId) {
-        this(studentName, studentId, DEFAULT_YEAR_OF_BIRTH, DEFAULT_STATUS);
+        this();
+        setName(studentName);
+        setStudentId(studentId);
     }
 
     public Student(String studentName, String studentId, int yearOfBirth) {
-        this(studentName, studentId, yearOfBirth, DEFAULT_STATUS);
+        this(studentName, studentId);
+        setYearOfBirth(yearOfBirth);
     }
 
     public Student(String studentName, String studentId, int yearOfBirth, boolean status) {
-        if (!setName(studentName)) {
-            setName(DEFAULT_STUDENT_NAME);
-        }
-        if (!setStudentId(studentId)) {
-            setStudentId(DEFAULT_STUDENT_ID);
-        }
-        if (!setYearOfBirth(yearOfBirth)) {
-            setYearOfBirth(DEFAULT_YEAR_OF_BIRTH);
-        }
-        if (!setStatus(status)) {
-            setStatus(DEFAULT_STATUS);
-        }
+        this(studentName, studentId, yearOfBirth);
+        setStatus(status);
     }
 
     // SETTERS
