@@ -4,16 +4,37 @@ public class Student {
     // declare your attributes here
     private String student_name;
     private String student_id;
-    private int yob;
+    private int yearBirth;
     private boolean status;
 
     public Student() {
         // implement here
+        this.setName("John Doe");
+        this.setStudent_id("560610000");
+        this.setYearOfBirth(1990);
+        this.setStatus(false);
     }
 
     // implement all missing constructors here
-    public Student(){
+    public Student(String student_name, String student_id){
+        this();
+        this.setName(student_name);
+        this.setStudent_id(student_id);
+    }
 
+    public Student(String student_name, String student_id, int yearBirth){
+        this();
+        this.setName(student_name);
+        this.setStudent_id(student_id);
+        this.setYearOfBirth(yearBirth);
+    }
+
+    public Student(String student_name, String student_id, int yearBirth, boolean status){
+        this();
+        this.setName(student_name);
+        this.setStudent_id(student_id);
+        this.setYearOfBirth(yearBirth);
+        this.setStatus(status);
     }
 
     // implement all get and set methods here
@@ -25,10 +46,20 @@ public class Student {
         }
     }
 
-    public String setStudent_id(String id){
+    public void setStudent_id(String id){
+        if(isValidStudent_id(student_id)){
+            this.student_id = student_id;
+        }
     }
-    public int setYearOfBirth(){
 
+    public void setYearOfBirth(int yearBirth){
+        if(isValidYOB(yearBirth)){
+            this.yearBirth = yearBirth;
+        }
+    }
+
+    public void setStatus(boolean status){
+        this.status = status;
     }
 
     public String getName(){
@@ -40,7 +71,7 @@ public class Student {
     }
 
     public int getYearOfBirth(){
-        return yob;
+        return yearBirth;
     }
 
     public boolean isActive(){
