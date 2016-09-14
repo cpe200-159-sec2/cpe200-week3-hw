@@ -15,6 +15,7 @@ public class Course {
 
     public Course(String n, String cid, String l) {
         // implement here
+        this(n,cid,"",30);
     }
 
     public Course(String n, String cid, String l, int max) {

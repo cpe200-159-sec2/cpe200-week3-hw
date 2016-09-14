@@ -1,10 +1,11 @@
 package cpe200;
 
 public class Student {
+
     // declare your attributes here
     private String student_name;
     private String student_id;
-    private int yearBirth;
+    private int yob;
     private boolean status;
 
     public Student() {
@@ -22,40 +23,32 @@ public class Student {
         this.setStudent_id(student_id);
     }
 
-    public Student(String student_name, String student_id, int yearBirth){
+    public Student(String student_name, String student_id, int yob){
         this();
         this.setName(student_name);
         this.setStudent_id(student_id);
-        this.setYearOfBirth(yearBirth);
+        this.setYearOfBirth(yob);
     }
 
-    public Student(String student_name, String student_id, int yearBirth, boolean status){
+    public Student(String student_name, String student_id, int yob, boolean status){
         this();
         this.setName(student_name);
         this.setStudent_id(student_id);
-        this.setYearOfBirth(yearBirth);
+        this.setYearOfBirth(yob);
         this.setStatus(status);
     }
 
     // implement all get and set methods here
     public void setName(String name){
-        if(student_name.length()!=0){
-            this.student_name = name;
-        }else{
-            System.out.print("ERROR");
-        }
+        this.student_name = !name.equalsIgnoreCase("")?student_name:this.student_name;
     }
 
-    public void setStudent_id(String id){
-        if(isValidStudent_id(student_id)){
-            this.student_id = student_id;
-        }
+    public void setStudent_id(String student_id){
+        this.student_id = isValidStudent_id(student_id)?student_id:this.student_id;
     }
 
-    public void setYearOfBirth(int yearBirth){
-        if(isValidYOB(yearBirth)){
-            this.yearBirth = yearBirth;
-        }
+    public void setYearOfBirth(int yob){
+       this.yob = isValidYOB(yob)?yob:this.yob;
     }
 
     public void setStatus(boolean status){
@@ -63,33 +56,33 @@ public class Student {
     }
 
     public String getName(){
-        return student_name;
+        return this.student_name;
     }
 
     public String getStudent_id(){
-        return student_id;
+        return this.student_id;
     }
 
     public int getYearOfBirth(){
-        return yearBirth;
+        return this.yob;
     }
 
     public boolean isActive(){
-        return status;
+        return this.status;
     }
 
     @Override
     public String toString() {
-        String o = "Something";
-
+        String o = getName() + " (" + getStudent_id() + ") was born in " + getYearOfBirth() + "is an " + (isActive()?"ACTIVE":"INACTIVE") + " student.";
         return o;
     }
 
     private boolean isValidStudent_id(String id) {
-        return true;
+        String a = "[5][6-9][0][6][1][0-2][0-9][0-9][0-9]";
+        return (id.matches(a))?true:false;
     }
 
     private boolean isValidYOB(int yob) {
-        return true;
+        return (yob>=1999)?true:false;
     }
 }
