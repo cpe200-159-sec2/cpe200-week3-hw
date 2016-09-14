@@ -4,7 +4,7 @@ public class Student {
 
     // CONSTRUCTORS
     public Student() {
-        setName(DEFAULT_STUDENT_NAME);
+        setStudentName(DEFAULT_STUDENT_NAME);
         setStudentId(DEFAULT_STUDENT_ID);
         setYearOfBirth(DEFAULT_YEAR_OF_BIRTH);
         setStatus(DEFAULT_STATUS);
@@ -12,7 +12,7 @@ public class Student {
 
     public Student(String studentName, String studentId) {
         this();
-        setName(studentName);
+        setStudentName(studentName);
         setStudentId(studentId);
     }
 
@@ -27,7 +27,7 @@ public class Student {
     }
 
     // SETTERS
-    public boolean setName(String studentName) {
+    public boolean setStudentName(String studentName) {
         if (isValidName(studentName)) {
             this.studentName = studentName;
             return true;
@@ -77,6 +77,9 @@ public class Student {
     }
 
     // Required for the compromise between the elves and the orcs
+    public boolean setName(String studentName) {
+        return setStudentName(studentName);
+    }
     public boolean setStudent_id(String studentId) {
         return setStudentId(studentId);
     }
