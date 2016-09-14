@@ -10,32 +10,23 @@ public class Student {
 
     public Student() {
         // implement here
-        this.setName("John Doe");
-        this.setStudent_id("560610000");
-        this.setYearOfBirth(1990);
-        this.setStatus(false);
+       this("John Doe","560610000",1990,false);
     }
 
     // implement all missing constructors here
     public Student(String student_name, String student_id){
-        this();
-        this.setName(student_name);
-        this.setStudent_id(student_id);
+        this(student_name, student_id, 1990, false);
     }
 
     public Student(String student_name, String student_id, int yob){
-        this();
-        this.setName(student_name);
-        this.setStudent_id(student_id);
-        this.setYearOfBirth(yob);
+        this(student_name, student_id, yob, false);
     }
 
     public Student(String student_name, String student_id, int yob, boolean status){
-        this();
-        this.setName(student_name);
-        this.setStudent_id(student_id);
-        this.setYearOfBirth(yob);
-        this.setStatus(status);
+        this.student_name = !student_name.equalsIgnoreCase("")?student_name:"John Doe";
+        this.student_id = isValidStudent_id(student_id)?student_id:"560610000";
+        this.yob = isValidYOB(yob)?yob:1990;
+        this.status = status;
     }
 
     // implement all get and set methods here
@@ -49,10 +40,6 @@ public class Student {
 
     public void setYearOfBirth(int yob){
        this.yob = isValidYOB(yob)?yob:this.yob;
-    }
-
-    public void setStatus(boolean status){
-        this.status = status;
     }
 
     public String getName(){
@@ -73,7 +60,7 @@ public class Student {
 
     @Override
     public String toString() {
-        String o = getName() + " (" + getStudent_id() + ") was born in " + getYearOfBirth() + "is an " + (isActive()?"ACTIVE":"INACTIVE") + " student.";
+        String o = getName() + " (" + getStudent_id() + ") was born in " + getYearOfBirth() + " is an " + (isActive()?"ACTIVE":"INACTIVE") + " student.";
         return o;
     }
 
@@ -83,6 +70,6 @@ public class Student {
     }
 
     private boolean isValidYOB(int yob) {
-        return (yob>=1999)?true:false;
+        return (yob>1989)?true:false;
     }
 }
