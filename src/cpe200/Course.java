@@ -82,9 +82,10 @@ public class Course {
     public String toString() {
         String o = this.course_name + " ("
                 + this.course_id + "), Teacher: "
-                + this.lecturer + ", has ";
+                + this.lecturer + ", has "
 
         // implement the rest here
+                + "num" + ", [maximum: " + String.valueOf(this.max_students) + "]";
 
         return o;
     }
