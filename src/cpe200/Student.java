@@ -64,6 +64,7 @@ public class Student {
         return yearOfBirth;
     }
 
+    public  boolean getStatus() { return  isActive();}
 
     //set methods
     public boolean setName(String name) {
