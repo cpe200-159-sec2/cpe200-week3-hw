@@ -6,25 +6,30 @@ public class Student {
         this("John Doe", "560610000", 1990, false);
     }
 
-    public Student() {String n,String id}{
-        this.name =n;
-        this.id = id;
+    public Student(String name , String id){
+        this(name,id,1990,false);
     }
-    public Student() {String n,String id, int birth,boolean status} {
-        this.name = !n.equalsIgnoreCase("") ? n: "John Doe";
-        this.id = (id.matches("^[5][6-9][0][6][1][0-2][0-9][0-9][0-9]$"))? id : "560610000";
-        this.birth =(birth>1989) ? birth: 1990;
-        this.status=status;
+    public Student(String name, String id, int year) {
+        this(name,id,year,false);
     }
-    public void setName(String n){
-        if (!n.equals(""))  name=n;
+    public Student(String name, String id, int year, boolean stat){
+        this.name = !name.equalsIgnoreCase("")?name:"John Doe";
+        this.id = (id.matches("^[5][6-9][0][6][1][0-2][0-9][0-9][0-9]$"))?id:"560610000";
+        this.year = (year>1989)?year:1990;
+        this.status = stat;
+    }
+
+    public void setName(String name){
+        if (!name.equals(""))  this.name=name;
     }
     public void setStudent_id(String id) {
-        String check = "^[0-9][6-9][0-9]{3,}[0-2][0-9]{3,}$";
-        if (id.matches(check) && id.length() == 9) this.id = id;
+        if(id.matches("^[5][6-9][0][6][1][0-2][0-9][0-9][0-9]$")) this.id = id;
     }
-    public void setYearOfBirth(int birth) {
-        if (birth> 1989) this.birth = birth;
+    public void setYearOfBirth(int year) {
+        if (year> 1989) this.year = year;
+    }
+    public void setStatus(boolean status){
+        this.status = status;
     }
     public String getName() {
         return name;
@@ -33,17 +38,17 @@ public class Student {
         return id;
     }
     public int getYearOfBirth() {
-        return birth;
+        return year;
     }
     public boolean isActive() {
         return status;
     }
     @Override
     public String toString() {
-        String Sts;
-        if(status==true) Sts="ACTIVE";
-        else Sts="INACTIVE";
-        String o = name + " (" + id + ") was born in " + Integer.toString(birth)  + " is an " + Sts + " student.";
+        String state;
+        if(isActive()==true) state = "ACTIVE";
+        else state="INACTIVE";
+        String o = name + " (" + id + ") was born in " + Integer.toString(year)  + " is an " + state + " student.";
 
         return o;
     }
@@ -58,7 +63,7 @@ public class Student {
 
     private String name;
     private String id;
-    private int birth;
+    private int year;
     private boolean status;
 
 }

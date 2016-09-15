@@ -6,12 +6,12 @@ import java.util.regex.Pattern;
 public class Course {
 
     public Course() {
-        this("TBA", "000000", "TBA", 30);
+        this("TBA","00000","TBA",30);
     }
 
     public Course(String n, String cid) {
-        setCourse_name(n);
         setCourse_id(cid);
+        setCourse_name(n);
     }
 
     public Course(String n, String cid, String l) {
@@ -21,10 +21,14 @@ public class Course {
     }
 
     public Course(String n, String cid, String l, int max) {
-        setCourse_name(n);
-        setCourse_id(cid);
-        setLecturer(l);
-        setMax_students(max);
+        this.course_name = !n.equalsIgnoreCase("") ? n : "TBA";
+        String checkID = "^[0-9]{6,}$";
+        if (cid.matches(checkID)) course_id = cid;
+        else course_id = "000000";
+        if (!l.equals("")) lecturer = l;
+        else lecturer = "TBA";
+        max_students = max;
+        no_students = 0;
     }
 
     public String getCourse_name() {
@@ -32,7 +36,7 @@ public class Course {
     }
 
     public void setCourse_name(String course_name) {
-        this.course_name = !course_name.equalsIgnoreCase("")?course_name:this.course_name;
+        this.course_name = !course_name.equalsIgnoreCase("") ? course_name : this.course_name;
     }
 
     public String getCourse_id() {
@@ -40,53 +44,57 @@ public class Course {
     }
 
     public void setCourse_id(String course_id) {
-        this.course_id = isValidCourse_id(course_id)?course_id:this.course_id;
+        this.course_id = isValidCourse_id(course_id) ? course_id : this.course_id;
     }
 
-    // implement the other get and set methods here
-    public String getLecturer() {
 
-        return lecturer;
+    public String getLecturer() {
+        return this.lecturer;
     }
 
     public void setLecturer(String lecturer) {
-        this.lecturer= !lecturer.equalsIgnoreCase("") ?lecturer:this.lecturer;
+        this.lecturer = !lecturer.equalsIgnoreCase("") ? lecturer : this.lecturer;
     }
 
     public int getMax_students() {
-        return this.max_students;
+        return max_students;
     }
 
-    public void setMax_students(int max_students) {
-        if(max_students>=0)
-            this.max_students=max_students;
+    public void setMax_students(int max) {
+        if (max >= 0) max_students = max;
     }
 
     public int getNo_students() {
-        return this.no_students;
+        return no_students;
     }
 
-    public void setNo_students(int no_students) {
-        if(no_students>=0 && no_students<=max_students)
-            this.no_students=no_students;
+    public void setNo_students(int n) {
+        if (n <= max_students && n > 0) no_students = n;
     }
 
     @Override
     public String toString() {
-        String index="",s="student, ";
-        if (this.no_students==0) index="NO";
-        else if (this.no_students=1) index="ONE";
-        else  index= Integer.toString(this.no_students);
+        String n = "", st = "student,";
+        if (no_students == 1) n = "ONE";
+        else if (no_students == 0) n = "NO";
+        else if (no_students > 1) {
+            n = Integer.toString(no_students);
+            st = "students,";
+        }
         String o = this.course_name + " ("
                 + this.course_id + "), Teacher: "
-                + this.lecturer + ", has "+index+" "+s+"[maximum: "+this.max_students+ " ]";
+                + this.lecturer + ", has " + n + " " + st + " [maximum: " + max_students + "]";
+
         return o;
     }
 
     private boolean isValidCourse_id(String id) {
         Pattern p = Pattern.compile(idREGEX);
         Matcher m = p.matcher(id);
-        return id.matches(idREGEX);
+        boolean b = m.matches();
+        if (b) return true;
+        else return false;
+
     }
 
     // Regular expression for the Student ID pattern
