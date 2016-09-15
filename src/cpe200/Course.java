@@ -6,20 +6,25 @@ import java.util.regex.Pattern;
 public class Course {
 
     public Course() {
-        this("","","",30);
+        this("TBA", "000000", "TBA", 30);
     }
 
     public Course(String n, String cid) {
-        // implement here
+        setCourse_name(n);
+        setCourse_id(cid);
     }
 
     public Course(String n, String cid, String l) {
-        // implement here
+        setCourse_id(cid);
+        setCourse_name(n);
+        setLecturer(l);
     }
 
     public Course(String n, String cid, String l, int max) {
-        this.course_name = !n.equalsIgnoreCase("")?n:"TBA";
-        // implement the rest here
+        setCourse_name(n);
+        setCourse_id(cid);
+        setLecturer(l);
+        setMax_students(max);
     }
 
     public String getCourse_name() {
@@ -40,50 +45,48 @@ public class Course {
 
     // implement the other get and set methods here
     public String getLecturer() {
-        // implement here
-        return "lecturer";
+
+        return lecturer;
     }
 
     public void setLecturer(String lecturer) {
-        // implement here
+        this.lecturer= !lecturer.equalsIgnoreCase("") ?lecturer:this.lecturer;
     }
 
     public int getMax_students() {
-        // implement here
-        return 0;
+        return this.max_students;
     }
 
     public void setMax_students(int max_students) {
-        // implement here
+        if(max_students>=0)
+            this.max_students=max_students;
     }
 
     public int getNo_students() {
-        // implement here
-        return 0;
+        return this.no_students;
     }
 
     public void setNo_students(int no_students) {
-        // implement here
+        if(no_students>=0 && no_students<=max_students)
+            this.no_students=no_students;
     }
 
     @Override
     public String toString() {
+        String index="",s="student, ";
+        if (this.no_students==0) index="NO";
+        else if (this.no_students=1) index="ONE";
+        else  index= Integer.toString(this.no_students);
         String o = this.course_name + " ("
                 + this.course_id + "), Teacher: "
-                + this.lecturer + ", has ";
-
-        // implement the rest here
-
+                + this.lecturer + ", has "+index+" "+s+"[maximum: "+this.max_students+ " ]";
         return o;
     }
 
     private boolean isValidCourse_id(String id) {
         Pattern p = Pattern.compile(idREGEX);
         Matcher m = p.matcher(id);
-
-        // implement the rest here
-
-        return true;
+        return id.matches(idREGEX);
     }
 
     // Regular expression for the Student ID pattern
