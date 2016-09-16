@@ -10,7 +10,7 @@ public class Student {
     }
     public Student(String n, String id, int year , boolean act){
         this.name = !n.equalsIgnoreCase("")?n :"John Doe";
-        String checkID = "^[5][6-9][0][6][1][0-9][0-9][0-9][0-9]$";
+        String checkID = "^[5][6-9][0][6][1][0-2][0-9][0-9][0-9]$";
         if(id.matches(checkID)&&id.length()==9) ID =id;
         else ID = "560610000";
         if(year >1989) bd = year;
@@ -21,7 +21,7 @@ public class Student {
         if (!n.equals(""))name =n;
     }
     public  void setStudent_id(String id){
-        String checkID = "^[5][6-9][0][6][1][0-9][0-9][0-9][0-9]$$";
+        String checkID = "^[5][6-9][0][6][1][0-2][0-9][0-9][0-9]$$";
         if(id.matches(checkID)&&id.length()==9)ID = id;
     }
     public  void setYearofBirth(int year){
