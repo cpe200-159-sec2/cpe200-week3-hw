@@ -23,7 +23,7 @@ public class Course {
     public Course(String n, String cid, String l, int max) {
         this.course_name = !n.equalsIgnoreCase("") ? n : "TBA";
         String checkID = "^[0-9]{6,}$";
-        if (cid.matches(checkID)) course_id = cid;
+        if (cid.matches(checkID))  course_id = cid;
         else course_id = "000000";
         if (!l.equals("")) lecturer = l;
         else lecturer = "TBA";
@@ -61,7 +61,7 @@ public class Course {
     }
 
     public void setMax_students(int max) {
-        if (max >= 0) max_students = max;
+        if (max >= 10) max_students = max;
     }
 
     public int getNo_students() {
@@ -83,8 +83,8 @@ public class Course {
         }
         String o = this.course_name + " ("
                 + this.course_id + "), Teacher: "
-                + this.lecturer + ", has " + n + " " + st + " [maximum: " + max_students + "]";
-
+                + this.lecturer + ", has "
+                + n + " " + st + " [maximum: " + max_students + "]";
         return o;
     }
 
