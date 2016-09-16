@@ -80,12 +80,21 @@ public class Course {
 
     @Override
     public String toString() {
+        String check;
+        if(this.no_students==0){
+            check = "NO student";
+        }else if(this.no_students==1){
+            check = "ONE student";
+        }else{
+            check = String.valueOf(this.no_students) + " students";
+        }
+
         String o = this.course_name + " ("
                 + this.course_id + "), Teacher: "
                 + this.lecturer + ", has "
 
         // implement the rest here
-                + "num" + ", [maximum: " + String.valueOf(this.max_students) + "]";
+                + check + ", [maximum: " + String.valueOf(this.max_students) + "]";
 
         return o;
     }
