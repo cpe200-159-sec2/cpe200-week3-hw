@@ -100,12 +100,8 @@ public class Course {
     }
 
     private boolean isValidCourse_id(String id) {
-        Pattern p = Pattern.compile(idREGEX);
-        Matcher m = p.matcher(id);
-
         // implement the rest here
-
-        return true;
+        return id.matches(idREGEX);
     }
 
     // Regular expression for the Student ID pattern
