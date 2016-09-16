@@ -1,119 +1,90 @@
 package cpe200;
-import javax.management.remote.SubjectDelegationPermission;
-public class Student {
 
-    public Student() {
-        this.setName(DEFAULT_NAME);
-               this.setStudent_id(DEFAULT_STUDENT_ID);
-             this.setYearOfBirth(DEFAULT_YEAR_OF_BIRTH);
-              this.isActive(DEFAULT_STATUS);
-    }
+        public class Student {
 
-    public Student(String name, String studentID) {
+            public Student() {
 
-                    this.setName(name);
-             this.setStudent_id(studentID);
-               this.setYearOfBirth(DEFAULT_YEAR_OF_BIRTH);
-               this.isActive(DEFAULT_STATUS);
-           }
-    public Student(String name, String studentID, int yearOfBirth) {
+                this.name = "John Doe";
+                this.id = "560610000";
+                this.year = 1990;
+                this.status = false;
 
-        this.setName(name);
-              this.setStudent_id(studentID);
-              this.setYearOfBirth(yearOfBirth);
-                this.isActive(DEFAULT_STATUS);
-           }
-
-             public Student(String name, String studentID, int yearOfBirth, boolean status) {
-
-
-                 if (!setName(name)) {
-                     setName(DEFAULT_NAME);
-                 }
-                 if (!setStudent_id(studentID)) {
-                     setStudent_id(DEFAULT_STUDENT_ID);
-                 }
-                 if (!setYearOfBirth(yearOfBirth)) {
-                     setYearOfBirth(DEFAULT_YEAR_OF_BIRTH);
-                 }
-                 if (!isActive(status)) {
-                     isActive(DEFAULT_STATUS);
-                 }
-
-             }
-
-    public String getName() {
-             return this.name;
-           }
-
-           public String getStudent_id() {
-                return this.studentID;
             }
 
-             public int getYearOfBirth() {
-                return yearOfBirth;
+            public Student(String name, String id) {
+                this.name = !name.equalsIgnoreCase("") ? name : "John Doe";
+                this.id = (id.matches("^[5][6-9][0][6][1][0-2][0-9][0-9][0-9]$")) ? id : "560610000";
+                this.year = 1990;
+                this.status = false;
             }
 
-             public  boolean getStatus() { return  isActive();}
+            public Student(String name, String id, int year) {
+                this.name = !name.equalsIgnoreCase("") ? name : "John Doe";
+                this.id = (id.matches("^[5][6-9][0][6][1][0-2][0-9][0-9][0-9]$")) ? id : "560610000";
+                this.year = (year > 1989) ? year : 1990;
+                this.status = false;
+            }
 
+            public Student(String name, String id, int year, boolean stat) {
+                this.name = !name.equalsIgnoreCase("") ? name : "John Doe";
+                this.id = (id.matches("^[5][6-9][0][6][1][0-2][0-9][0-9][0-9]$")) ? id : "560610000";
+                this.year = (year > 1989) ? year : 1990;
+                this.status = stat;
+            }
 
-            public boolean setName(String name) {
-               if (isValidName(name)){
-                        this.name = name;
-                       return true;
-                  }
-                    return false;
+            public void setName(String name) {
+                if (name != "") this.name = name;
+            }
 
-                    }
+            public void setStudent_id(String id) {
+                if (id.matches("^[5][6-9][0][6][1][0-2][0-9]{3}$")) this.id = id;
+            }
 
-             public boolean setStudent_id(String studentID) {
-               if (isValidStudent_id(studentID)) {
-                      this.studentID = studentID;
-                       return true;
-                   }
-                   return false;
-                   }
+            public void setYearOfBirth(int year) {
+                if (year > 1989) this.year = year;
+            }
 
+            public void setStatus(boolean status) {
+                this.status = status;
+            }
 
-            public boolean setYearOfBirth(int yearOfBirth) {
-               if (isValidYOB(yearOfBirth)) {
-                       this.yearOfBirth = yearOfBirth;
-                       return true;
-                   }
-                   return false;
-           }
+            public String getName() {
+                return name;
+            }
+
+            public String getStudent_id() {
+                return id;
+            }
+
+            public int getYearOfBirth() {
+                return year;
+            }
 
             public boolean isActive() {
-                return this.status;
+                return status;
             }
 
-             public boolean isActive(boolean status) {
-                this.status = status;
-                return this.status;
-           }
-    @Override
-    public String toString() {
-        String stat;
-               if(isActive()==true) stat = "ACTIVE";
+            @Override
+            public String toString() {
+                String stat;
+                if (isActive() == true) stat = "ACTIVE";
                 else stat = "INACTIVE";
-        String o = name + " (" + id + ") was born in " + Integer.toString(year)  +" is an " + stat + " student.";
-        return o;
-    }
+                String o = name + " (" + id + ") was born in " + String.valueOf(year) + " is an " + stat + " student.";
+
+                return o;
+            }
+
+            private boolean isValidStudent_id(String id) {
+                return true;
+            }
 
 
+            private boolean isValidYOB(int yob) {
+                return true;
+            }
 
-    private boolean isValidStudent_id(String id) {
-        return true;
-    }
-
-    private boolean isValidYOB(int yob) {
-        return true;
-    }
-
-    private String name;
-     private String id;
-    private int year;
-   private boolean status;
-
-
-}
+            private String name;
+            private String id;
+            private int year;
+            private boolean status;
+        }

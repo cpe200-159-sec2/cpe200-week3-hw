@@ -1,90 +1,68 @@
 package cpe200;
 
-import org.junit.Before;
-import org.junit.Test;
+ import com.sun.xml.internal.bind.v2.model.core.ID;
 
-import static org.junit.Assert.assertEquals;
+public class Student {
 
+    public Student() {
 
-public class StudentTest {
-
-    private Student s;
-
-    @Test
-    public void defaultConstructor() throws Exception {
-        s = new Student();
-        assertEquals("John Doe", s.getName());
-        assertEquals("560610000", s.getStudent_id());
-        assertEquals(1990, s.getYearOfBirth());
-        assertEquals(false, s.isActive());
+                this("John Doe","560610000",1990,false);
+            }
+    public  Student(String n,String id){
+                this.name = n;
+               this.id = id;
+            }
+     public Student(String n,String id,int year,boolean status){
+                this.name = !n.equalsIgnoreCase("") ? n : "John Doe";
+                this.id = (id.matches("^[5][6-9][0][6][1][0-2][0-9][0-9][0-9]$"))?id:"560610000";
+                this.year = (year>1989)?year:1990;
+                this.status = status;
+            }
+     public void setName(String n){
+                if (!n.equals(""))name =n;
+            }
+     public  void setStudent_id(String id){
+                String checkID = "^[0-9][6-9][0-9]{3,0}[0-2][0-9]{3,0}$";
+                if(id.matches(checkID)&&id.length()==9)ID = id;
+            }
+     public  void setYearofBirth(int year){
+                if(year >1989)bd =year;
+            }
+     public String getName(){
+                return  name;
+            }
+     public String getStudent_id(){
+                return ID;
+            }
+     public int getYearOfBirth(){
+                return bd;
+           }
+     public  boolean isActive(){
+               return  active;
     }
 
-    @Test
-    public void parameterizedConstructor() throws Exception {
-        // valid data
-        s = new Student("Saman Boonme", "590613001", 1998, true);
-        assertEquals("Saman Boonme", s.getName());
-        assertEquals("560610000", s.getStudent_id());
-        assertEquals(1998, s.getYearOfBirth());
-        assertEquals(true, s.isActive());
 
-        // invalid data
-        s = new Student("Somchai Maakmee", "500611701", 1980, false);
-        assertEquals("Somchai Maakmee", s.getName());
-        assertEquals("560610000", s.getStudent_id());
-        assertEquals(1990, s.getYearOfBirth());
-        assertEquals(false, s.isActive());
+    @Override
+    public String toString() {
+
+        String tmp;
+              if(isActive()==true) tmp = "ACTIVE";
+                else tmp = "INACTIVE";
+               String o = name + " (" + id + ") was born in " + Integer.toString(year)  + " is an " ;
+        return o;
     }
 
-    @Before
-    public void setUp() throws Exception {
-        s = new Student("Sanguan Sornjai", "590611702", 1999, false);
+    private boolean isValidStudent_id(String id) {
+        return true;
     }
 
-    @Test
-    public void invalidName() throws Exception {
-        // continue from setUp()
-        s.setName("");
-        assertEquals("Sanguan Sornjai", s.getName());
+    private boolean isValidYOB(int yob) {
+        return true;
     }
 
-    @Test
-    public void invalidStudentID() throws Exception {
-        // continue from setUp()
-
-        // invalid data
-        s.setStudent_id("550710111");
-        assertEquals("590611702",s.getStudent_id());
-
-        // valid data
-        s.setStudent_id("590612111");
-        assertEquals("590612111",s.getStudent_id());
-
-        // invalid data
-        s.setStudent_id("590613111");
-        assertEquals("590612111",s.getStudent_id());
-
-        // invalid data
-        s.setStudent_id("590613111000");
-        assertEquals("590612111",s.getStudent_id());
-
-        // invalid data
-        s.setStudent_id("helloworld");
-        assertEquals("590612111",s.getStudent_id());
-    }
-
-    @Test
-    public void invalidYOB() throws Exception {
-        // continue from setUp()
-        s.setYearOfBirth(1976);
-        assertEquals(1999, s.getYearOfBirth());
-    }
-
-    @Test
-    public void checkToString() throws Exception {
-        // continue from setUp()
-
-        assertEquals("Sanguan Sornjai (590611702) was born in 1999 is an INACTIVE student.", s.toString());
-    }
+      private String name;
+     private String ID;
+     private int bd;
+    private boolean status;
 
 }

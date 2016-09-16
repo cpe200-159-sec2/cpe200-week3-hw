@@ -1,3 +1,8 @@
+package cpe200;
+
+import java.util.regex.Matcher;
+
+import java.util.regex.Pattern;
 public class Course {
 
     public Course() {
@@ -8,17 +13,17 @@ public class Course {
     public Course(String n, String cid) {
 
         this.course_name = n;
-              this.course_id = cid;
-              this.lecturer = "TBA";
-               this.max_students = 30;
+        this.course_id = cid;
+        this.lecturer = "TBA";
+        this.max_students = 30;
     }
 
     public Course(String n, String cid, String l) {
 
         this.course_name = n;
-               this.course_id = cid;
-                this.lecturer = l;
-               this.max_students = 30;
+        this.course_id = cid;
+        this.lecturer = l;
+        this.max_students = 30;
     }
 
     public Course(String n, String cid, String l, int max) {
@@ -30,7 +35,7 @@ public class Course {
         else lecturer = "TBA";
         max_students = max;
         no_students = 0;
-
+    }
 
     public String getCourse_name() {
         return course_name;
@@ -49,16 +54,15 @@ public class Course {
     }
 
 
+    public String getLecturer() {
 
-        public String getLecturer () {
 
-
-            return lecturer;
-        }
+        return lecturer;
+    }
 
     public void setLecturer(String lecturer) {
 
-        if(lecturer!="") this.lecturer = lecturer;
+        if (lecturer != "") this.lecturer = lecturer;
 
     }
 
@@ -69,44 +73,38 @@ public class Course {
     }
 
 
-
     public void setMax_students(int max_students) {
-        public void setMax_students ( int max){
-
-            if (max_students >= 0) max_students = max;
-        }
+        if (max_students >= 0) this.max_students = max_students;
+    }
 
     public int getNo_students() {
 
         return no_students;
     }
 
- -
 
-    public void setNo_students(int no_students) {
-        public void setNo_students ( int n){
+    public void setNo_students(int n) {
 
-            if (n <= max_students && n > 0) no_students = n;
+        if (n <= max_students && n > 0) no_students = n;
+    }
+
+    @Override
+    public String toString() {
+
+        String n = " ", stun = "student,";
+        if (no_students == 0) n = "NO";
+        else if (no_students == 1) n = "ONE";
+        else if (no_students > 1) {
+            n = Integer.toString(no_students);
+            stun = "students,";
         }
-
-        @Override
-        public String toString () {
-
-            String n = " ",stun = "student,";
-                    if(no_students == 0) n= "NO";
-                    else if (no_students == 1) n = "ONE";
-                    else if (no_students > 1){
-                           n = Integer.toString(no_students);
-                           stun = "students,";
-                    }
-            String o = this.course_name + " ("
-                    + this.course_id + "), Teacher: "
-                    + this.lecturer + ", has " + n + " " + stun + " [maximum: " + max_students + "]";
+        String o = this.course_name + " ("
+                + this.course_id + "), Teacher: "
+                + this.lecturer + ", has " + n + " " + stun + " [maximum: " + max_students + "]";
 
 
-
-            return o;
-        }
+        return o;
+    }
 
     private boolean isValidCourse_id(String id) {
         Pattern p = Pattern.compile(idREGEX);
@@ -116,4 +114,10 @@ public class Course {
 
         return true;
     }
-
+private String course_name;
+    private int no_students;
+    private String course_id;
+    private String lecturer;
+    private int max_students;
+    private static String idREGEX="[0-9]{6}" ;
+}
