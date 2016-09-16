@@ -1,8 +1,5 @@
 package cpe200;
 
-import java.util.regex.Matcher;
-
-import java.util.regex.Pattern;
 public class Course {
 
     public Course() {
@@ -107,12 +104,7 @@ public class Course {
     }
 
     private boolean isValidCourse_id(String id) {
-        Pattern p = Pattern.compile(idREGEX);
-        Matcher m = p.matcher(id);
-
-        // implement the rest here
-
-        return true;
+        return id.matches(idREGEX);
     }
 private String course_name;
     private int no_students;
