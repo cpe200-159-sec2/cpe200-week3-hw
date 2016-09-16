@@ -9,11 +9,11 @@ public class Student {
 
         this(name,id,1990,false);
     }
-    public  Student(String name,String id,int year ,boolean stat ){
+    public  Student(String name,String id,int year ,boolean status ){
         this.name = !name.equalsIgnoreCase("")?name:"John Doe";
         this.id = (id.matches("^[5][6-9][0][6][1][0-2][0-9][0-9][0-9]$"))?id:"560610000";
         this.year = (year>1989)?year:1990;
-        this.status = stat;
+        this.status = status;
     }
     public void setName(String name){
         if(name!="") this.name = name;
