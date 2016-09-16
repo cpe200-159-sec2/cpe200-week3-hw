@@ -76,7 +76,7 @@ public class StudentTest {
     @Test
     public void invalidYOB() throws Exception {
         // continue from setUp()
-        s.setYearOfBirth(1976);
+        s.setYearofBirth(1976);
         assertEquals(1999, s.getYearOfBirth());
     }
 
