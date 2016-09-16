@@ -50,7 +50,7 @@ public class Course {
     }
 
     public void setMax_students(int max_students) {
-        if (max_students > 0) {
+        if (max_students > 10) {
             this.max_students = max_students;
         }
     }
