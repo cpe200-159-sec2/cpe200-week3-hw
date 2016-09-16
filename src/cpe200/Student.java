@@ -95,21 +95,16 @@ public class Student {
 
     @Override
     public String toString() {
-        return new StringBuilder()
-                .append(getStudentName())
-                .append(" (")
-                .append(getStudentId())
-                .append(") was born in ")
-                .append(getYearOfBirth())
-                .append(" is an ")
-                .append(getStatusWordly())
-                .append(" student.")
-                .toString();
+        return String.format("%s (%s) was born in %d is an %s student.",
+                getStudentName(),
+                getStudentId(),
+                getYearOfBirth(),
+                getStatusWordly());
     }
 
     // Validity tests
     private boolean isValidName(String studentName) {
-        return !"".equals(studentName);
+        return false == "".equals(studentName);
     }
     private boolean isValidStudentId(String id) {
         return id.matches(STUDENT_ID_PATTERN);

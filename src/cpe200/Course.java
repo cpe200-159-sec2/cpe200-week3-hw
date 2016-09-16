@@ -1,8 +1,5 @@
 package cpe200;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 public class Course {
 
     // CONSTRUCTORS
@@ -88,10 +85,7 @@ public class Course {
         switch(currentStudents) {
             case 0: return "NO student";
             case 1: return "ONE student";
-            default: return new StringBuilder()
-                    .append(currentStudents)
-                    .append(" students")
-                    .toString();
+            default: return String.format("%d students", getCurrentStudents());
         }
     }
 
@@ -130,29 +124,23 @@ public class Course {
 
     @Override
     public String toString() {
-        return new StringBuilder()
-                .append(courseName)
-                .append(" (")
-                .append(courseId)
-                .append("), Teacher: ")
-                .append(lecturerName)
-                .append(", has ")
-                .append(getCurrentStudentsWordly())
-                .append(", [maximum: ")
-                .append(getMaxStudents())
-                .append("]")
-                .toString();
+        return String.format("%s (%s), Teacher: %s, has %s, [maximum: %d]",
+                getCourseName(),
+                getCourseId(),
+                getLecturerName(),
+                getCurrentStudentsWordly(),
+                getMaxStudents());
     }
 
     // Validity tests
     private boolean isValidCourseName(String courseName) {
-        return !"".equals(courseName);
+        return false == "".equals(courseName);
     }
     private boolean isValidCourseId(String courseId) {
         return courseId.matches(COURSE_ID_PATTERN);
     }
     private boolean isValidLecturerName(String lecturerName) {
-        return !"".equals(lecturerName);
+        return false == "".equals(lecturerName);
     }
     private boolean isValidMaxStudents(int maxStudents) {
         return maxStudents >= 10;
