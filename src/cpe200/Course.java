@@ -83,9 +83,16 @@ public class Course {
 
     @Override
     public String toString() {
+        String n = "",st = "student,";
+        if(no_students==1) n = "ONE";
+        else if(no_students==0) n = "NO";
+        else if(no_students>1){
+            n=Integer.toString(no_students);
+            st= "students,";
+        }
         String o = this.course_name + " ("
-                + this.course_id + "), Teacher: "
-                + this.lecturer + ", has ";
+            + this.course_id + "), Teacher: "
+            + this.lecturer + ", has "+ n+" "+ st + " [maximum: " + max_students +"]";
 
         // implement the rest here
 
