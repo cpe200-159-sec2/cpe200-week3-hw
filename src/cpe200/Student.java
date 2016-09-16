@@ -58,11 +58,9 @@ public class Student {
 
     @Override
     public String toString() {
-        String o = "Something";
-        String stat;
-        if (isActive() == true) stat = "ACTIVE";
-        else stat = "INACTIVE";
-        String o = name + " (" + id + ") was born in " + Integer.toString(year) + " is an " + stat + " student.";
+        //String o = "Something";
+        String o = getName() + " (" + getStudent_id() + ") was born in " + getYearOfBirth() + " is an " +
+                (isActive() ? "ACTIVE" : "INACTIVE") + " student.";
 
         return o;
     }

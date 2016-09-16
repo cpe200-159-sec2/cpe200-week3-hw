@@ -16,7 +16,7 @@ public class Course {
 
     public Course(String n, String cid, String l) {
         // implement here
-        this(n, cid, 1, 30);
+        this(n, cid, l, 30);
     }
 
     public Course(String n, String cid, String l, int max) {
@@ -77,18 +77,19 @@ public class Course {
 
     @Override
     public String toString() {
-        String num;
-        if (this.no_students == 0) num = "NO student";
-        else if (this.no_students == 1) num = "ONE student";
-        else num = String.valueOf(this.no_students) + " students";
-
         String o = this.course_name + " ("
                 + this.course_id + "), Teacher: "
                 + this.lecturer + ", has ";
 
         // implement the rest here
-        +this.lecturer + ", has " + num + ", [maximum: " + String.valueOf(this.max_students) + "]" ;
-
+        if (getNo_students() == 0) {
+            o += "NO student, ";
+        } else if (getNo_students() == 1) {
+            o += "ONE student, ";
+        } else {
+            o += getNo_students() + " students, ";
+        }
+        o += "[maximum: " + getMax_students() + "]";
         return o;
     }
 
@@ -99,8 +100,6 @@ public class Course {
         // implement the rest here
         if (m.matches()) return true;
         else return false;
-
-        return true;
     }
 
     // Regular expression for the Student ID pattern
