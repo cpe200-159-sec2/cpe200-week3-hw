@@ -90,8 +90,8 @@ public class Course {
 
         String n = " ", stun = "student,";
         if (no_students == 0) n = "NO";
-        else if (no_students == 1) n = "ONE";
-        else if (no_students > 1) {
+        if (no_students == 1) n = "ONE";
+        if (no_students > 1) {
             n = Integer.toString(no_students);
             stun = "students,";
         }
@@ -106,10 +106,11 @@ public class Course {
     private boolean isValidCourse_id(String id) {
         return id.matches(idREGEX);
     }
-private String course_name;
+
+    private String course_name;
     private int no_students;
     private String course_id;
     private String lecturer;
     private int max_students;
-    private static String idREGEX="[0-9]{6}" ;
+    private static String idREGEX = "[0-9]{6}";
 }
