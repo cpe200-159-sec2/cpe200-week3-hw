@@ -37,16 +37,15 @@ public class Student {
     }
 
     public boolean setStudent_id(String id) {
-        if (id.matches("^[5][6-9][0][6][1][0-2][0-9][0-9][0-9]$")) {
+        if (isValidStudent_id(id)) {
             this.id = id;
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
 
     public boolean setYearOfBirth(int year) {
-        if (year > 1989) {
+        if (isValidYOB(year)) {
             this.year = year;
             return true;
         }
@@ -56,6 +55,21 @@ public class Student {
     public boolean setStatus(boolean status) {
         this.status = status;
         return status;
+    }
+
+    public boolean isValidStudent_id(String id){
+        if(id.matches("^[5][6-9][0][6][1][0-2][0-9][0-9][0-9]$")){
+            this.id = id;
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isValidYOB(int year){
+        if(year>1989){
+            this.year = year;
+            return true;
+        }return false;
     }
 
     public String getName() {
