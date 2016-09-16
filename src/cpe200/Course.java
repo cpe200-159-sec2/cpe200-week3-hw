@@ -47,7 +47,6 @@ public class Course {
         this.course_id = isValidCourse_id(course_id) ? course_id : this.course_id;
     }
 
-
     public String getLecturer() {
         return this.lecturer;
     }
