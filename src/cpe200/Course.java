@@ -11,12 +11,18 @@ public class Course {
 
     public Course(String n, String cid) {
         // implement here
-        this(n, cid, "TBA", 30);
+        this.course_name = n;
+        this.course_id = cid;
+        this.lecturer = "TBA";
+        this.max_students = 30;
     }
 
     public Course(String n, String cid, String l) {
         // implement here
-        this(n, cid, l, 30);
+        this.course_name = n;
+        this.course_id = cid;
+        this.lecturer = l;
+        this.max_students = 30;
     }
 
     public Course(String n, String cid, String l, int max) {
