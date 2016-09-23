@@ -1,98 +1,168 @@
 package cpe200;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 public class Course {
 
+    // CONSTRUCTORS
     public Course() {
-        this("","","",30);
+        setCourseName(DEFAULT_COURSE_NAME);
+        setCourseId(DEFAULT_COURSE_ID);
+        setLecturerName(DEFAULT_LECTURER_NAME);
+        setMaxStudents(DEFAULT_MAX_STUDENTS);
+        setCurrentStudents(DEFAULT_CURRENT_STUDENTS);
     }
 
-    public Course(String n, String cid) {
-        // implement here
+    public Course(String courseName, String courseId) {
+        this();
+        setCourseName(courseName);
+        setCourseId(courseId);
     }
 
-    public Course(String n, String cid, String l) {
-        // implement here
+    public Course(String courseName, String courseId, String lecturerName) {
+        this(courseName, courseId);
+        setLecturerName(lecturerName);
     }
 
-    public Course(String n, String cid, String l, int max) {
-        this.course_name = !n.equalsIgnoreCase("")?n:"TBA";
-        // implement the rest here
+    public Course(String courseName, String courseId, String lecturerName, int maxStudents) {
+        this(courseName, courseId, lecturerName);
+        setMaxStudents(maxStudents);
     }
 
+    // SETTERS
+    public boolean setCourseName(String courseName) {
+        if (isValidCourseName(courseName)) {
+            this.courseName = courseName;
+            return true;
+        }
+        return false;
+    }
+    public boolean setCourseId(String courseId) {
+        if (isValidCourseId(courseId)) {
+            this.courseId = courseId;
+            return true;
+        }
+        return false;
+    }
+    public boolean setLecturerName(String lecturerName) {
+        if (isValidLecturerName(lecturerName)) {
+            this.lecturerName = lecturerName;
+            return true;
+        }
+        return false;
+    }
+    public boolean setMaxStudents(int maxStudents) {
+        if (isValidMaxStudents(maxStudents)) {
+            this.maxStudents = maxStudents;
+            return true;
+        }
+        return false;
+    }
+    public boolean setCurrentStudents(int currentStudents) {
+        if (isValidCurrentStudents(currentStudents)) {
+            this.currentStudents = currentStudents;
+            return true;
+        }
+        return false;
+    }
+
+    // GETTERS
+    public String getCourseName() {
+        return courseName;
+    }
+    public String getCourseId() {
+        return courseId;
+    }
+    public String getLecturerName() {
+        return lecturerName;
+    }
+    public int getMaxStudents() {
+        return maxStudents;
+    }
+    public int getCurrentStudents() {
+        return currentStudents;
+    }
+    public String getCurrentStudentsWordly() {
+        int currentStudents = getCurrentStudents();
+        switch(currentStudents) {
+            case 0: return "NO student";
+            case 1: return "ONE student";
+            default: return String.format("%d students", getCurrentStudents());
+        }
+    }
+
+    // These are required because I refused to follow the naming convention used in the test
+    // You know I could have changed the naming in the test file but decided I shouldn't go that far
+    public boolean setCourse_name(String courseName) {
+        return setCourseName(courseName);
+    }
+    public boolean setCourse_id(String courseId) {
+        return setCourseId(courseId);
+    }
+    public boolean setLecturer(String lecturerName) {
+        return setLecturerName(lecturerName);
+    }
+    public boolean setMax_students(int maxStudents) {
+        return setMaxStudents(maxStudents);
+    }
+    public boolean setNo_students(int currentStudents) {
+        return setCurrentStudents(currentStudents);
+    }
     public String getCourse_name() {
-        return course_name;
+        return getCourseName();
     }
-
-    public void setCourse_name(String course_name) {
-        this.course_name = !course_name.equalsIgnoreCase("")?course_name:this.course_name;
-    }
-
     public String getCourse_id() {
-        return course_id;
+        return getCourseId();
     }
-
-    public void setCourse_id(String course_id) {
-        this.course_id = isValidCourse_id(course_id)?course_id:this.course_id;
-    }
-
-    // implement the other get and set methods here
     public String getLecturer() {
-        // implement here
-        return "lecturer";
+        return getLecturerName();
     }
-
-    public void setLecturer(String lecturer) {
-        // implement here
-    }
-
     public int getMax_students() {
-        // implement here
-        return 0;
+        return getMaxStudents();
     }
-
-    public void setMax_students(int max_students) {
-        // implement here
-    }
-
     public int getNo_students() {
-        // implement here
-        return 0;
-    }
-
-    public void setNo_students(int no_students) {
-        // implement here
+        return getCurrentStudents();
     }
 
     @Override
     public String toString() {
-        String o = this.course_name + " ("
-                + this.course_id + "), Teacher: "
-                + this.lecturer + ", has ";
-
-        // implement the rest here
-
-        return o;
+        return String.format("%s (%s), Teacher: %s, has %s, [maximum: %d]",
+                getCourseName(),
+                getCourseId(),
+                getLecturerName(),
+                getCurrentStudentsWordly(),
+                getMaxStudents());
     }
 
-    private boolean isValidCourse_id(String id) {
-        Pattern p = Pattern.compile(idREGEX);
-        Matcher m = p.matcher(id);
-
-        // implement the rest here
-
-        return true;
+    // Validity tests
+    private boolean isValidCourseName(String courseName) {
+        return false == "".equals(courseName);
+    }
+    private boolean isValidCourseId(String courseId) {
+        return courseId.matches(COURSE_ID_PATTERN);
+    }
+    private boolean isValidLecturerName(String lecturerName) {
+        return false == "".equals(lecturerName);
+    }
+    private boolean isValidMaxStudents(int maxStudents) {
+        return maxStudents >= 10;
+    }
+    private boolean isValidCurrentStudents(int currentStudents) {
+        return 0 <= currentStudents && currentStudents <= maxStudents;
     }
 
-    // Regular expression for the Student ID pattern
-    private static final String idREGEX = "\\d{6}";
+    // RegEx
+    private static final String COURSE_ID_PATTERN = "[0-9]{6}";
 
-    // all private attributes
-    private String course_name;
-    private String course_id;
-    private String lecturer;
-    private int max_students;
-    private int no_students;
+    // Defaults
+    private static final String DEFAULT_COURSE_NAME = "TBA";
+    private static final String DEFAULT_COURSE_ID = "000000";
+    private static final String DEFAULT_LECTURER_NAME = "TBA";
+    private static final int DEFAULT_MAX_STUDENTS = 30;
+    private static final int DEFAULT_CURRENT_STUDENTS = 0;
+
+    // Privates
+    private String courseName;
+    private String courseId;
+    private String lecturerName;
+    private int maxStudents;
+    private int currentStudents;
 }
