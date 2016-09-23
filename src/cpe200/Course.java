@@ -70,7 +70,7 @@ public class Course {
         String numstd;
         if(this.no_students == 0)numstd = "NO student";
         else if(this.no_students == 1)numstd = "ONE student";
-        else numstd = String.valueOf(this.no_students) + " student";
+        else numstd = String.valueOf(this.no_students) + " students";
         String o = this.course_name + " ("
                 + this.course_id + "), Teacher: "
                 + this.lecturer + ", has "

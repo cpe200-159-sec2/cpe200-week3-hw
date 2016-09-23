@@ -3,7 +3,7 @@ package cpe200;
 public class Student {
 
     public Student() {
-        this("Jnhn Doe","560610000",1990,false);
+        this("John Doe","560610000",1990,false);
     }
 
     public Student(String name,String id){
@@ -25,7 +25,7 @@ public class Student {
         if(name != "")this.student_name = name;
     }
 
-    public void setStudent_name(String id){
+    public void setStudent_id(String id){
         if(id.matches("^[5][6-9][0][6][1][0-2][0-9][0-9][0-9]$"))
             this.student_id = id;
     }
