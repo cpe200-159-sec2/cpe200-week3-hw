@@ -111,7 +111,7 @@ public class Course {
     }
 
     // Regular expression for the Student ID pattern
-    private static final String idREGEX = "\\d{}";
+    private static final String idREGEX = "\\d{6}";
 
     // all private attributes
     private String course_name;
