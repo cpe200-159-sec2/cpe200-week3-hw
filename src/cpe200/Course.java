@@ -18,9 +18,9 @@ public class Course {
     }
 
     public Course(String n, String cid, String l, int max) {
-        this.course_name = !n.equalsIgnoreCase("")?n:"TBA";
-        this.course_id = cid.matches("^[0-9]{6}$")?cid:"000000";
-        this.lecturer = !l.equalsIgnoreCase("")?l:"TBA";
+        setCourse_name(n);
+        setCourse_id(cid);
+        setLecturer(l);
         this.max_students = (max>=10)?max:30;
     }
 
@@ -29,7 +29,7 @@ public class Course {
     }
 
     public void setCourse_name(String course_name) {
-        this.course_name = !course_name.equalsIgnoreCase("")?course_name:this.course_name;
+        this.course_name = !"".equalsIgnoreCase(course_name)?course_name:this.course_name;
     }
 
     public String getCourse_id() {
@@ -45,7 +45,7 @@ public class Course {
     }
 
     public void setLecturer(String lecturer) {
-        if(lecturer!="") this.lecturer = lecturer;
+        if(!"".equals(lecturer)) this.lecturer = lecturer;
     }
 
     public int getMax_students() {
