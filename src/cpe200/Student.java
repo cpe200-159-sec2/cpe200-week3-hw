@@ -15,18 +15,18 @@ public class Student {
     }
 
     public Student(String name, String id, int year, boolean stat){
-        this.name = !name.equalsIgnoreCase("")?name:"John Doe";
-        this.id = (id.matches("^[5][6-9][0][6][1][0-2][0-9][0-9][0-9]$"))?id:"560610000";
+        this.name = !"".equals(name)?name:"John Doe";
+        this.id = (isValidStudent_id(id))?id:"560610000";
         this.year = (year>1989)?year:1990;
         this.status = stat;
     }
 
     public void setName(String name){
-        if(name!="") this.name = name;
+        if(!"".equals(name)) this.name = name;
     }
 
     public void setStudent_id(String id){
-        if(id.matches("^[5][6-9][0][6][1][0-2][0-9][0-9][0-9]$")) this.id = id;
+        if(isValidStudent_id(id)) this.id = id;
     }
 
     public void setYearOfBirth(int year){
@@ -64,7 +64,8 @@ public class Student {
     }
 
     private boolean isValidStudent_id(String id) {
-        return true;
+        if(id.matches("^[5][6-9][0][6][1][0-2][0-9][0-9][0-9]$")) return true;
+        return false;
     }
 
     private boolean isValidYOB(int yob) {
